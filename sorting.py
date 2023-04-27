@@ -1,6 +1,2 @@
-a = 1
-b = 1
-print(id(a))
-print(id(b))
-
-str()
+a = list(range(1, 5))
+print(a)

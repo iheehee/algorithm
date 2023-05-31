@@ -1,6 +1,2 @@
-from collections import deque
-
-queue = deque()
-queue.append(1)
-
-print(queue)
+a = [1, 2, 3, 4]
+print(a[:])

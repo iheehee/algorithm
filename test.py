@@ -1,2 +1,6 @@
-a = [1, 2, 3, 4]
-print(a[:])
+graph = [[]] * (4)
+print(graph)
+a = graph[3]
+a.append(2)
+
+print(graph)

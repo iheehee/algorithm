@@ -1,2 +1,3 @@
-a = list(range(1, 5))
-print(a)
+a = (1, 2)
+d, f = a
+print(d)

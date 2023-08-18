@@ -131,3 +131,26 @@ def dfs(count):
 
 dfs(0)
 print(result)
+
+""" 연습 """
+n, m = input().split()
+
+graph = [] #원본 데이터
+
+data = [] #바이러스가 퍼진 후 데이터
+
+for _ in range(n):
+    a = list(map(int, input().split()))
+    graph.append(a)
+
+def get_score():
+    pass
+
+def temp():
+    count = 3
+    for i in range(m):
+        for i in range(n):
+            if count == 0:
+                get_score()
+            elif     
+

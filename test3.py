@@ -1,57 +1,52 @@
 """
-n 도시의 개수
-m 도로의 개수
-k 거리의 정보
-x 출발도시의 정보
+도시의 개수 n
+간선의 개수 m
+거리의 정보 k
+출발도시의 번호 x
+간선의 값 1
+특정 도시 x로 부터 출발 -> 최단거리가 정확히 k인 모든 도시들의 번호를 출력하시오
 
-거리의 정보가 주어진다.
-출발도시로 부터 해당 거리 만큼 갈수 있는 도시를 구하라
-
-- 전역변수로 거리정보를 선언한다.
-- 탐색을 할 때마다 탐색거리를 카운팅한다. 
-- 거리정보와 탐색거리가 같은 노드가 정답이다. 
+최단거리가 k인 모든 도시의 번호를 오름차순 정렬
+최단거리 k인 도시가 하나도 존재하지 않으면 -1 출력    
 """
-
+from collections import deque
 
 n, m, k, x = map(int, input().split())
 
-data = [0] * (n + 1)
-
 graph = [[] for _ in range(m + 1)]
 
-for _ in range(1, m + 1):
-    a, b = list(map(int, input().split()))
+visited = [False] * (m + 1)
+
+for i in range(1, m + 1):
+    a, b = map(int, input().split())
     graph[a].append(b)
 
-results = []
-
-print(data)
-
-
-def DFS(k, x, count):
-    # 탐색거리를 선언한다.
-
-    for i in graph[x]:
-        if count > k:
-            break
-        elif count <= k:
-            count += 1
-            results.append((count, i))
-            DFS(k, i, count)
-            count -= 1
+count = [0] * (n + 1)
+result = []
 
 
-DFS(k, x, 0)
+def bfs(start):
+    q = deque([start])
 
-print(results)
+    visited[start] = True
+    while q:
+        v = q.popleft()
 
-if len(results) == 0:
+        for i in graph[v]:
+            if visited[i] == False:
+                visited[i] = True
+                q.append(i)
+                count[i] = count[v] + 1
+                if count[i] == k:
+                    result.append(i)
+
+
+bfs(x)
+
+print(count)
+if len(result) == 0:
     print(-1)
 else:
-    for result in results:
-        data[result[1]] += 1
-    for i in range(len(data)):
-        if data[i] == 1:
-            print(i)
-
-
+    result.sort()
+    for i in result:
+        print(i)
